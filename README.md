@@ -91,12 +91,12 @@
 ## ![error](https://cloud.githubusercontent.com/assets/13649199/13672935/ef09ec1e-e6e7-11e5-9f79-d1641c05cbe6.png) Подсказки по HW1
 - не делайте 1000 000 тасок, лучше их сделать крупнее
 - у меня разница между 4 и 1000 тасками по времени незаметна, поэтому делайте просто и не делайте сложно
-- наконец: можно не считать значение элемента результирующей матрицы C за раз, а накапливать (`concurrentMultiply2`). Мои результаты:
+- наконец: можно не считать значение элемента результирующей матрицы C за раз, а накапливать (`concurrentMultiply3`). Мои результаты:
 ```
 Benchmark                             (matrixSize)  Mode  Cnt    Score    Error  Units
 MatrixBenchmark.singleThreadMultiplyOpt       1000    ss  100  837,867 ± 25,530  ms/op
-MatrixBenchmark.concurrentMultiply            1000    ss  100  394,294 ± 21,657  ms/op
-MatrixBenchmark.concurrentMultiply2           1000    ss  100  186,827 ± 11,882  ms/op
+MatrixBenchmark.concurrentMultiply2           1000    ss  100  394,294 ± 21,657  ms/op
+MatrixBenchmark.concurrentMultiply3           1000    ss  100  186,827 ± 11,882  ms/op
 ```
 -----
 # Программа проекта

@@ -1,0 +1,93 @@
+<application>
+  <component name="LocalDatabaseDriverManager" version="141+">
+    <driver id="affbd384-03d6-48d3-a7d8-0ec3fcadc217" name="Database Driver [2]" dialect="GenericSQL" driver-class="org.firebirdsql.jdbc.FBDriver">
+      <option name="auto-commit" value="true" />
+      <option name="auto-sync" value="true" />
+      <library>
+        <url>file://C:/Maven_repo/org/firebirdsql/jdbc/jaybird-jdk18/2.2.10/jaybird-jdk18-2.2.10.jar</url>
+      </library>
+      <library>
+        <url>file://C:/Maven_repo/javax/resource/connector-api/1.5/connector-api-1.5.jar</url>
+      </library>
+    </driver>
+    <driver id="h2.unified" name="H2" dialect="H2">
+      <option name="auto-sync" value="true" />
+    </driver>
+    <driver id="oracle" name="Oracle" dialect="Oracle">
+      <option name="auto-sync" value="true" />
+      <option name="auto-commit" value="false" />
+    </driver>
+    <driver id="derby.embedded" name="Derby (Embedded)" dialect="Derby">
+      <option name="auto-sync" value="true" />
+    </driver>
+    <driver id="sybase.jtds" name="Sybase (jTds)" dialect="Sybase">
+      <option name="auto-sync" value="true" />
+    </driver>
+    <driver id="sqlserver.jtds" name="SQL Server (jTds)" dialect="TSQL">
+      <option name="auto-sync" value="true" />
+    </driver>
+    <driver id="hsqldb.local" name="HSQLDB (Local)" dialect="HSQLDB">
+      <option name="auto-sync" value="true" />
+      <library>
+        <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/hsqldb-license.txt</url>
+      </library>
+      <library>
+        <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/hsqldb-2.3.2.jar</url>
+      </library>
+    </driver>
+    <driver id="derby.remote" name="Derby (Remote)" dialect="Derby">
+      <option name="auto-sync" value="true" />
+    </driver>
+    <driver id="sqlite.xerial" name="Sqlite (Xerial)" dialect="SQLite">
+      <option name="auto-sync" value="true" />
+    </driver>
+    <driver id="sybase.ase" name="Sybase (Native)" dialect="Sybase">
+      <option name="auto-sync" value="true" />
+    </driver>
+    <driver id="postgresql" name="PostgreSQL" dialect="PostgreSQL">
+      <option name="auto-sync" value="true" />
+      <library>
+        <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/postgresql-driver-license.txt</url>
+      </library>
+      <library>
+        <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/postgresql-9.4-1201.jdbc4.jar</url>
+      </library>
+    </driver>
+    <driver id="db2" name="DB2 (LUW)" dialect="DB2">
+      <option name="auto-sync" value="false" />
+      <property name="retrieveMessagesFromServerOnGetMessage" value="true" />
+    </driver>
+    <driver id="sqlserver.ms" name="SQL Server (Microsoft)" dialect="TSQL">
+      <option name="auto-sync" value="true" />
+    </driver>
+    <driver id="java.sql.Driver" name="Database Driver" driver-class="org.firebirdsql.jdbc.FBDriver">
+      <option name="auto-commit" value="true" />
+      <option name="auto-sync" value="true" />
+      <library>
+        <url>file://C:/Firebird/Jaybird-2.2.11-JDK_1.8/jaybird-full-2.2.11.jar</url>
+      </library>
+    </driver>
+    <driver id="db2.jtopen" name="DB2 (JTOpen)" dialect="DB2">
+      <option name="auto-sync" value="false" />
+      <property name="prompt" value="false" />
+    </driver>
+    <driver id="mysql" name="MySQL" dialect="MySQL">
+      <option name="auto-sync" value="true" />
+      <property name="autoReconnect" value="true" />
+      <property name="zeroDateTimeBehavior" value="convertToNull" />
+      <property name="tinyInt1isBit" value="false" />
+      <property name="characterEncoding" value="utf8" />
+      <property name="characterSetResults" value="utf8" />
+      <property name="yearIsDateType" value="false" />
+    </driver>
+    <driver id="hsqldb.remote" name="HSQLDB (Remote)" dialect="HSQLDB">
+      <option name="auto-sync" value="true" />
+      <library>
+        <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/hsqldb-license.txt</url>
+      </library>
+      <library>
+        <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/hsqldb-2.3.2.jar</url>
+      </library>
+    </driver>
+  </component>
+</application>

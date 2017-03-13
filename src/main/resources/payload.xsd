@@ -25,7 +25,7 @@
         </xs:complexType>
     </xs:element>
 
-                                //HW01*****
+
     <xs:element name="Project">
         <xs:complexType>
             <xs:all>
@@ -58,7 +58,7 @@
             <xs:enumeration value="FINISHED"/>
         </xs:restriction>
     </xs:simpleType>
-                                //**********
+
 
     <xs:element name="User">
         <xs:complexType>

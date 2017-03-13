@@ -2,9 +2,7 @@ package ru.javaops.masterjava.xml.util;
 
 import com.google.common.io.Resources;
 import org.junit.Test;
-import ru.javaops.masterjava.xml.schema.CityType;
-import ru.javaops.masterjava.xml.schema.ObjectFactory;
-import ru.javaops.masterjava.xml.schema.Payload;
+import ru.javaops.masterjava.xml.schema.*;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.namespace.QName;
@@ -40,5 +38,11 @@ public class JaxbParserTest {
         String strCity = JAXB_PARSER.marshal(cityElement2);
         JAXB_PARSER.validate(strCity);
         System.out.println(strCity);
+    }
+
+    @Test
+    public void testProject() throws Exception {
+        JAXBElement<User> userJAXBElement = JAXB_PARSER.unmarshal(Resources.getResource("payload.xml").openStream());
+        System.out.println(userJAXBElement.getValue().getEmail());
     }
 }

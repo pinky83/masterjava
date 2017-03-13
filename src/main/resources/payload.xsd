@@ -21,6 +21,13 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
+                <xs:element name="Projects">
+                    <xs:complexType>
+                        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+                            <xs:element ref="Project"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
             </xs:all>
         </xs:complexType>
     </xs:element>
@@ -28,7 +35,7 @@
 
     <xs:element name="Project">
         <xs:complexType>
-            <xs:all>
+            <xs:sequence>
                 <xs:element type="xs:string" name="title"/>
                 <xs:element type="xs:string" name="description"/>
                 <xs:element name="Groups">
@@ -38,7 +45,7 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-            </xs:all>
+            </xs:sequence>
         </xs:complexType>
     </xs:element>
 
@@ -46,6 +53,13 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element type="xs:string" name="title"/>
+                <xs:element name="Users">
+                    <xs:complexType>
+                        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+                            <xs:element ref="User"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
             <xs:attribute type="groupType" name="group" use="required"/>
         </xs:complexType>

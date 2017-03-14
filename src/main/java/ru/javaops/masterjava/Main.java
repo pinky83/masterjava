@@ -7,7 +7,10 @@ import ru.javaops.masterjava.xml.schema.Project;
 import ru.javaops.masterjava.xml.schema.User;
 import ru.javaops.masterjava.xml.util.JaxbParser;
 import ru.javaops.masterjava.xml.util.Schemas;
+import ru.javaops.masterjava.xml.util.StaxStreamProcessor;
 
+import javax.xml.stream.XMLStreamReader;
+import javax.xml.stream.events.XMLEvent;
 import java.util.*;
 
 /**
@@ -40,11 +43,36 @@ public class Main {
         users.forEach(System.out::println);
     }
 
+    public static void getUsersByStax(String projectName) throws Exception{
+        Set<String> users = new TreeSet<>(Comparator.comparing(String::toString));
+        try (StaxStreamProcessor processor = new StaxStreamProcessor(Resources.getResource("payload.xml").openStream())) {
+            String title;
+            XMLStreamReader reader = processor.getReader();
+            while ((title = processor.getElementValue("title")) != null) {
+                if (title.equals(projectName)) {
+                    while (reader.hasNext()) {
+                        int event = reader.next();
+                        if (event == XMLEvent.START_ELEMENT) {
+                            if ("Project".equals(processor.getValue(event))) {
+                                break;
+                            }
+                            if ((title = processor.getElementValue("fullName")) != null)
+                                users.add(title);
+                        }
+                    }
+                }
+            }
+            users.forEach(System.out::println);
+        }
+    }
+
     public static void main(String[] args) {
-        System.out.format("Hello MasterJava!");
+        System.out.format("Hello MasterJava!%n");
 
         try {
-            getUsers("topjava");
+//            getUsers("masterjava");
+
+            getUsersByStax("masterjava");
         }catch (Exception e) {e.printStackTrace();}
     }
 }

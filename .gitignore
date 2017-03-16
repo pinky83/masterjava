@@ -3,3 +3,5 @@ out
 target
 *.iml
 log
+inspection
+_windows

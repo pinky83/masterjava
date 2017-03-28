@@ -1,0 +1,46 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>User list</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="jumbotron">
+    <div class="container-fluid">
+        <h1>List of uploaded users</h1>
+
+        <form action="/masterjava/users" enctype="multipart/form-data" method="post">
+            <p>
+                <label>Select a file: </label>
+                <input type="file" name="file"/>
+            </p>
+            <input type="submit" value="Upload" />
+        </form>
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Row</th>
+                <th>Name</th>
+                <th>Flag</th>
+                <th>Email</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user, iterationStatus : ${userList}">
+                <td th:text="${iterationStatus.count}">number</td>
+                <td th:text="${user.getValue()}">John</td>
+                <td th:text="${user.getFlag().toString()}"> - </td>
+                <td th:text="${user.getEmail()}">none@emtymail.com</td>
+            </tr>
+            </tbody>
+        </table>
+        <p> <span th:text="${userList.size()}"> 0 </span> </p>
+    </div>
+</div>
+
+<script type="text/javascript" src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+</body>
+</html>

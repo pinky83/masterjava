@@ -16,6 +16,10 @@
     <packaging>war</packaging>
     <name>Export</name>
 
+    <properties>
+        <webjars-bootstrap.version>3.3.7-1</webjars-bootstrap.version>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
@@ -39,6 +43,21 @@
             <groupId>com.j2html</groupId>
             <artifactId>j2html</artifactId>
             <version>RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>${webjars-bootstrap.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.0-b03</version>
+        </dependency>
+        <dependency>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf</artifactId>
+            <version>3.0.3.RELEASE</version>
         </dependency>
     </dependencies>
 </project>

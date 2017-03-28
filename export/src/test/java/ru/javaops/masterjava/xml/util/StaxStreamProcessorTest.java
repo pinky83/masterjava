@@ -20,7 +20,9 @@ public class StaxStreamProcessorTest {
             while (reader.hasNext()) {
                 int event = reader.next();
                 if (event == XMLEvent.START_ELEMENT) {
-                    if ("City".equals(reader.getLocalName())) {
+                    if ("User".equals(reader.getLocalName())) {
+                        System.out.print(reader.getAttributeValue(0) + " " + reader.getAttributeValue(2));
+                        System.out.println();
                         System.out.println(reader.getElementText());
                     }
                 }
@@ -29,11 +31,11 @@ public class StaxStreamProcessorTest {
     }
 
     @Test
-    public void readCities2() throws Exception {
+    public void readUsers() throws Exception {
         try (StaxStreamProcessor processor =
                      new StaxStreamProcessor(Resources.getResource("payload.xml").openStream())) {
-            String city;
-            while ((city = processor.getElementValue("City")) != null) {
+            String city, attr;
+            while ((city = processor.getElementValue("User")) != null) {
                 System.out.println(city);
             }
         }

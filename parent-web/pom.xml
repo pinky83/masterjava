@@ -56,9 +56,6 @@
         </dependency>
     </dependencies>
 
-    <profiles>
-    </profiles>
-
     <dependencyManagement>
     </dependencyManagement>
 </project>

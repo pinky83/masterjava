@@ -21,15 +21,27 @@
         <City id="mnsk">Минск</City>
     </Cities>
     <Users>
-        <User flag="active" city="kiv" email="gmail@gmail.com" groupRefs="topjava07 masterjava01">Full Name</User>
+        <User flag="s" city="kiv" email="gmail@gmail.com" groupRefs="topjava07 masterjava01">Домогаров Александр</User> //wrong attribute flag
         <User flag="superuser" city="spb" email="admin@javaops.ru" groupRefs="topjava07 topjava08 masterjava01">Admin</User>
-        <User flag="deleted" city="spb" email="deleted@yandex.ru">Deleted</User>
-        <User flag="active" city="mow" email="user1@gmail.com" groupRefs="masterjava01 topjava06">User1</User>
+        <User flag="deleted" city="spb" email="mandarinka17@mail.ru">Козлова Инна</User>
+        <User  city="mow" email="user1@gmail.com" groupRefs="masterjava01 topjava06">User1</User>                       //no attribute flag
         <User flag="active" city="kiv" email="user2@yandex.ru" groupRefs="masterjava01">User2</User>
         <User flag="active" city="mnsk" email="user3@yandex.ru" groupRefs="masterjava01">User3</User>
-        <User flag="deleted" city="spb" email="deleted@yandex.ru">Anton</User>
-        <User flag="active" city="mow" email="user1@gmail.com" groupRefs="masterjava01 topjava06">Kolya</User>
-        <User flag="active" city="kiv" >Fedor</User>
-        <User flag="active" city="mnsk" email="user3@yandex.ru" groupRefs="masterjava01">Marina</User>
+        <User flag="deleted" city="spb" email="deleted@yandex.ru"></User>                                               //empty name
+        <User flag="active" city="mow" email="nik11589@gmail.com" groupRefs="masterjava01 topjava06">Kolya</User>
+        <User flag="active" city="kiv" >Fedor</User>                                                                    //no email attribute
+        <User flag="active" city="mnsk" email="user2345@yandex.ru" groupRefs="masterjava01">Marina</User>
+        <User flag="active" city="kiv" email="egor16@gmail.com" groupRefs="masterjava01">Попов Егор</User>
+        <User flag="superuser" city="spb" email="" groupRefs="masterjava01">Taras taras</User>                          //empty attribute email
+        <User flag="deleted" city="spb" email="tde120897@hotmail.com">topor16</User>
+        <User flag="active" city="mow" email="ann170294@gmail.com" groupRefs="topjava06">Anny96</User>
+        <User flag="active" city="kiv" email="wrongmail" groupRefs="masterjava01">Kostya Zalishuk</User>                //wrong attribute email
+        <User flag="active" city="mnsk" email="fes@ukr.net" groupRefs="masterjava01">G. Fesov</User>
+        <User flag="active" city="kiv" email="svetasveta86@gmail.com" groupRefs="topjava07 topjava08">Svetlana Vert.</User>
+        <User flag="" city="spb" email="rus27@mail.ru" groupRefs="topjava06">Руслан Петров</User>                       //empty attribute flag
+        <User flag="deleted" city="spb" email="nikanika23@ya.ru">Nika</User>
+        <User flag="active" city="mow" email="vanya19@gmail.com" groupRefs="masterjava01 topjava08">Иван</User>
+        <User flag="active" city="kiv" email="goryan1979@mail.ru" groupRefs="masterjava01 masterjava02">Goryan Natali</User>
+        <User flag="active" city="mnsk" email="samraimi@hotmail.com" groupRefs="masterjava01">Sam Raimi</User>          //total number of users = 22, wrong = 7
     </Users>
 </Payload>

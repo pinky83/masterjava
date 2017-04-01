@@ -41,7 +41,7 @@
         <User flag="" city="spb" email="rus27@mail.ru" groupRefs="topjava06">Руслан Петров</User>                       //empty attribute flag
         <User flag="deleted" city="spb" email="nikanika23@ya.ru">Nika</User>
         <User flag="active" city="mow" email="vanya19@gmail.com" groupRefs="masterjava01 topjava08">Иван</User>
-        <User flag="active" city="kiv" email="goryan1979@mail.ru" groupRefs="masterjava01 masterjava02">Goryan Natali</User>
+        <User flag="active" city="kiv" email="goryan1979@mail.ru" groupRefs="masterjava01 masterjava02">Goryan Natali</User>//
         <User flag="active" city="mnsk" email="samraimi@hotmail.com" groupRefs="masterjava01">Sam Raimi</User>          //total number of users = 22, wrong = 7
     </Users>
 </Payload>

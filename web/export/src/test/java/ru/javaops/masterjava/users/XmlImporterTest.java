@@ -12,6 +12,7 @@ import ru.javaops.masterjava.xml.util.StaxStreamProcessor;
 import javax.xml.stream.events.XMLEvent;
 import java.sql.DriverManager;
 import java.util.*;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -39,7 +40,6 @@ public class XmlImporterTest {
 
     @Test
     public void xmlImporterTest() throws Exception {
-        //TODO replace nullable on Optional
         final UserDao DAO = DBIProvider.getDao(UserDao.class);
         DAO.clean();
 
@@ -49,21 +49,31 @@ public class XmlImporterTest {
         final Pattern pattern = Pattern.compile(regex);
         Matcher matcher;
 
-        StaxStreamProcessor processor = new StaxStreamProcessor(Resources.getResource("payload.xml").openStream());
+        final StaxStreamProcessor processor = new StaxStreamProcessor(Resources.getResource("payload.xml").openStream());
         int count = 0; //counter of invalid users
         while (processor.doUntil(XMLEvent.START_ELEMENT, "User")) {
             count++;
             User user;
-            String fullName = null, email = null;
+            String fullName = null;
+            Optional<String> email = Optional.ofNullable(processor.getAttribute("email"));
             try {
-                email = processor.getAttribute("email");
-                matcher = pattern.matcher(email);
-                if((!matcher.matches())|| (email.equals(""))) email = null;
+                matcher = pattern.matcher(email.orElseThrow(IllegalArgumentException::new));
+                if(!matcher.matches()){
+                    fullName = processor.getReader().getElementText();
+                    throw new Exception();
+                }
                 UserFlag flag = UserFlag.valueOf(processor.getAttribute("flag"));
                 fullName = processor.getReader().getElementText();
-                if (fullName.equals(""))fullName = null;
-                user = new User(fullName, email, flag);
-            }catch (Exception e) {invalidUsers.put(count, fullName + " " + email);
+                if (fullName.equals("")) throw new Exception();
+                user = new User(fullName, email.orElse("no mail"), flag);
+            }catch (Exception e) {
+                if(!email.isPresent()){
+                    try{
+                        fullName = processor.getReader().getElementText();
+                    }catch (Exception ex) {invalidUsers.put(count, "user " + count + " - empty name and email");
+                        continue;}
+                }
+                invalidUsers.put(count,"user " + count + " " + fullName + " " + email.orElse("no email"));
                                   continue;
             }
             users.add(user);
@@ -77,7 +87,6 @@ public class XmlImporterTest {
             }
         }
 
-        //users.forEach(System.out::println);
 
         System.out.format("Total : %d, Invalid : %d%n", count, invalidUsers.size());
 

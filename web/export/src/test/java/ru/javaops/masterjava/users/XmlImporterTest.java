@@ -3,7 +3,6 @@ package ru.javaops.masterjava.users;
 import com.google.common.io.Resources;
 import org.junit.Before;
 import org.junit.Test;
-import org.skife.jdbi.v2.tweak.ConnectionFactory;
 import ru.javaops.masterjava.persist.DBIProvider;
 import ru.javaops.masterjava.persist.dao.UserDao;
 import ru.javaops.masterjava.persist.model.User;
@@ -12,10 +11,9 @@ import ru.javaops.masterjava.xml.util.StaxStreamProcessor;
 
 import javax.xml.stream.events.XMLEvent;
 import java.sql.DriverManager;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Дмитрий on 31.03.2017.
@@ -24,7 +22,7 @@ import java.util.Map;
 public class XmlImporterTest {
 
     private List<User> users = new ArrayList<>();
-    static Map<Integer, User> invalidUsers = new HashMap<>();
+    private static Map<Integer, String> invalidUsers = new HashMap<>();
 
     @Before
     public void setUp() throws Exception {
@@ -41,19 +39,48 @@ public class XmlImporterTest {
 
     @Test
     public void xmlImporterTest() throws Exception {
-        UserDao DAO = DBIProvider.getDao(UserDao.class);
+        //TODO replace nullable on Optional
+        final UserDao DAO = DBIProvider.getDao(UserDao.class);
         DAO.clean();
 
+        //email validation
+        final String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+
+        final Pattern pattern = Pattern.compile(regex);
+        Matcher matcher;
+
         StaxStreamProcessor processor = new StaxStreamProcessor(Resources.getResource("payload.xml").openStream());
-        int count = 0; //just for idea - wan't see "duplicated code" underlining
+        int count = 0; //counter of invalid users
         while (processor.doUntil(XMLEvent.START_ELEMENT, "User")) {
             count++;
-            final String email = processor.getAttribute("email");
-            final UserFlag flag = UserFlag.valueOf(processor.getAttribute("flag"));
-            final String fullName = processor.getReader().getElementText();
-            final User user = new User(fullName, email, flag);
+            User user;
+            String fullName = null, email = null;
+            try {
+                email = processor.getAttribute("email");
+                matcher = pattern.matcher(email);
+                if((!matcher.matches())|| (email.equals(""))) email = null;
+                UserFlag flag = UserFlag.valueOf(processor.getAttribute("flag"));
+                fullName = processor.getReader().getElementText();
+                if (fullName.equals(""))fullName = null;
+                user = new User(fullName, email, flag);
+            }catch (Exception e) {invalidUsers.put(count, fullName + " " + email);
+                                  continue;
+            }
             users.add(user);
         }
-        users.forEach(DAO::insert);
+
+        for (User u : users) {
+            try {
+                DAO.insert(u);
+            } catch (Exception e) {
+                invalidUsers.put(count, u.getFullName() + " " + u.getEmail());
+            }
+        }
+
+        //users.forEach(System.out::println);
+
+        System.out.format("Total : %d, Invalid : %d%n", count, invalidUsers.size());
+
+        invalidUsers.values().forEach(System.out::println);
     }
 }

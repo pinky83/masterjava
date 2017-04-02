@@ -79,13 +79,15 @@ public class XmlImporterTest {
             users.add(user);
         }
 
-        for (User u : users) {
-            try {
-                DAO.insert(u);
-            } catch (Exception e) {
-                invalidUsers.put(count, u.getFullName() + " " + u.getEmail());
-            }
-        }
+//        for (User u : users) {
+//            try {
+//                DAO.insert(u);
+//            } catch (Exception e) {
+//                invalidUsers.put(count, u.getFullName() + " " + u.getEmail());
+//            }
+//        }
+
+        DAO.insertInTransaction(users);
 
 
         System.out.format("Total : %d, Invalid : %d%n", count, invalidUsers.size());

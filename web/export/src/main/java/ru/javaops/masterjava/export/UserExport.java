@@ -74,16 +74,12 @@ public class UserExport {
         }
 
         DAO.clean();
-        for (User u : users) {
-            try {
-                DAO.insert(u);
-            } catch (Exception e) {
-                invalidUsers.put(count, u.getFullName() + " " + u.getEmail());
-            }
-        }
+        DAO.insertInTransaction(users);
 
         System.out.format("Total : %d, Invalid : %d%n", count, invalidUsers.size());
         invalidUsers.values().forEach(System.out::println);
+
+        users = DAO.getFromBeginWithLimit(10);
 
         return users;
     }

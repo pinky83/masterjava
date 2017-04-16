@@ -3,6 +3,7 @@
     <extensionMap>
       <mapping pattern="placeholder" type="Native" />
       <mapping pattern="Procfile" type="PLAIN_TEXT" />
+      <mapping ext="conf" type="PLAIN_TEXT" />
     </extensionMap>
   </component>
 </application>

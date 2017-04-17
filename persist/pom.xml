@@ -42,5 +42,11 @@
             <artifactId>postgresql</artifactId>
             <version>9.4.1211</version>
         </dependency>
+        <dependency>
+            <groupId>ru.javaops</groupId>
+            <artifactId>common-web</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 </project>

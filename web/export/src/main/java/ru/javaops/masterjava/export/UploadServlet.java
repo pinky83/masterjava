@@ -1,8 +1,7 @@
 package ru.javaops.masterjava.export;
 
 import com.google.common.collect.ImmutableMap;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.thymeleaf.context.WebContext;
 
 import javax.servlet.ServletException;
@@ -16,12 +15,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-import static ru.javaops.masterjava.export.ThymeleafListener.engine;
+import static ru.javaops.masterjava.common.web.ThymeleafListener.engine;
 
 @WebServlet("/")
 @MultipartConfig
+@Slf4j
 public class UploadServlet extends HttpServlet {
-    private static final Logger log = LoggerFactory.getLogger(UploadServlet.class);
     private static final int CHUNK_SIZE = 2000;
 
     private final UserExport userExport = new UserExport();
